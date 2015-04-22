@@ -1,0 +1,8 @@
+[package]
+name = "rs-inflector"
+version = "0.1.0"
+authors = ["Nathan Faucett <nathanfaucett@gmail.com>"]
+
+[dependencies.regex]
+git = "https://github.com/nathanfaucett/regex.git"
+rev = "7db0fb303e6c73f475bff12b438a233fb0d1475d"
