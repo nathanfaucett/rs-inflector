@@ -4,5 +4,5 @@ version = "0.1.0"
 authors = ["Nathan Faucett <nathanfaucett@gmail.com>"]
 
 [dependencies.regex]
-git = "https://github.com/nathanfaucett/regex.git"
-rev = "7db0fb303e6c73f475bff12b438a233fb0d1475d"
+git = "https://github.com/rust-lang/regex.git"
+rev = "45b6739b47a2f154bb67528c5d61ed4a86852bf3"
