@@ -27,8 +27,8 @@ impl Inflector {
     }
 
     #[inline]
-    pub fn get_locale(&self) -> String {
-        self.locale.to_string()
+    pub fn get_locale(&self) -> &str {
+        &self.locale
     }
 
     #[inline]
@@ -105,7 +105,7 @@ impl Inflector {
     fn create_match_word(word: &str) -> String {
         let mut s = String::new();
         s.push_str("\\b");
-        s.push_str(word.clone());
+        s.push_str(&word.to_lowercase());
         s.push_str("\\b");
         s
     }
