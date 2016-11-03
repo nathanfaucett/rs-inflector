@@ -3,5 +3,17 @@ name = "inflector"
 version = "0.1.0"
 authors = ["Nathan Faucett <nathanfaucett@gmail.com>"]
 
+keywords = ["inflector"]
+description = "inflector for rust"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/nathanfaucett/rs-inflector.git"
+homepage = "https://github.com/nathanfaucett/rs-inflector"
+
 [dependencies]
 regex = "0.1.8"
+
+[dependencies.vector]
+git = "https://github.com/nathanfaucett/rs-vector.git"
+[dependencies.stack]
+git = "https://github.com/nathanfaucett/rs-stack.git"

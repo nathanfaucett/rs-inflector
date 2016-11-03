@@ -1,5 +1,8 @@
 extern crate inflector;
+
+
 use inflector::Inflector;
+
 
 #[test]
 fn test_uncountables() {

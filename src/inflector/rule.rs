@@ -1,5 +1,6 @@
-extern crate regex;
-use self::regex::Regex;
+use collections::string::String;
+
+use super::super::regex::Regex;
 
 
 pub struct Rule {
