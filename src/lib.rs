@@ -11,6 +11,7 @@ extern crate stack;
 
 
 mod inflector;
+mod rule;
 
 
 pub use inflector::Inflector;

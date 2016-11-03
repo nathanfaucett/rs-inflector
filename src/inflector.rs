@@ -5,7 +5,7 @@ use core::convert::AsRef;
 use vector::Vector;
 use stack::Stack;
 
-use super::rule::Rule;
+use rule::Rule;
 
 
 pub struct Inflector {
@@ -16,6 +16,7 @@ pub struct Inflector {
 }
 
 impl Inflector {
+    #[inline]
     pub fn new(locale: &str) -> Self {
         Inflector {
             locale: locale.to_string(),
@@ -25,10 +26,12 @@ impl Inflector {
         }
     }
 
+    #[inline]
     pub fn get_locale(&self) -> String {
         self.locale.to_string()
     }
 
+    #[inline]
     pub fn clear(&mut self) -> &mut Self {
         self.plurals.clear();
         self.singulars.clear();
@@ -36,6 +39,7 @@ impl Inflector {
         self
     }
 
+    #[inline]
     pub fn uncountable(&mut self, uncountables: &[&str]) -> &mut Self {
         for uncountable in uncountables {
             self.uncountables.push(uncountable.to_string());
@@ -43,16 +47,19 @@ impl Inflector {
         self
     }
 
+    #[inline]
     pub fn plural(&mut self, rule: &str, replacer: &str) -> &mut Self {
         self.plurals.push(Rule::new(rule.to_string(), replacer.to_string()));
         self
     }
 
+    #[inline]
     pub fn singular(&mut self, rule: &str, replacer: &str) -> &mut Self {
         self.singulars.push(Rule::new(rule.to_string(), replacer.to_string()));
         self
     }
 
+    #[inline]
     pub fn irregular(&mut self, singular: &str, plural: &str) -> &mut Self {
         self.plurals.push(
             Rule::new(Self::create_match_word(singular), plural.to_string())
@@ -63,14 +70,17 @@ impl Inflector {
         self
     }
 
+    #[inline]
     pub fn pluralize(&mut self, word: &str) -> String {
         Self::replace(&self.uncountables, &self.plurals, word)
     }
 
+    #[inline]
     pub fn singularize(&mut self, word: &str) -> String {
        Self::replace(&self.uncountables, &self.singulars, word)
     }
     
+    #[inline]
     fn replace(uncountables: &Vector<String>, replacers: &Vector<Rule>, word: &str) -> String {
         let mut result: String = word.to_string();
     
@@ -91,6 +101,7 @@ impl Inflector {
         }
     }
     
+    #[inline]
     fn create_match_word(word: &str) -> String {
         let mut s = String::new();
         s.push_str("\\b");

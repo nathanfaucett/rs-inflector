@@ -1,6 +1,6 @@
 use collections::string::String;
 
-use super::super::regex::Regex;
+use regex::Regex;
 
 
 pub struct Rule {
@@ -9,13 +9,14 @@ pub struct Rule {
 }
 
 impl Rule {
-    pub fn new(rule: String, replacer: String) -> Rule {
+    #[inline]
+    pub fn new(rule: String, replacer: String) -> Self {
         let re = match Regex::new(&rule) {
             Ok(re) => re,
             Err(err) => panic!("{}", err),
         };
 
-        Rule{
+        Rule {
             regex: re,
             replacer: replacer,
         }
