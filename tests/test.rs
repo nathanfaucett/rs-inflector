@@ -7,7 +7,7 @@ use inflector::Inflector;
 #[test]
 fn test_locale() {
     let inflector = Inflector::new("en");
-    assert_eq!(inflector.get_locale(), "en");
+    assert_eq!(inflector.locale(), "en");
 }
 
 #[test]
@@ -37,8 +37,8 @@ fn test_pluralize() {
 
     inflector
         .plural("$", "s")
-        .plural("(ch|sh|ss|[sxz])$", "$1es")
-        .plural("([^aeiouy])y$", "$1ies");
+        .plural("(ch|sh|ss|s|x|z)$", "${1}es")
+        .plural("([^aeiouy])y$", "${1}ies");
 
     assert_eq!(inflector.pluralize("car"), "cars");
     assert_eq!(inflector.pluralize("box"), "boxes");
@@ -51,8 +51,8 @@ fn test_singularize() {
 
     inflector
         .singular("s$", "")
-        .singular("(ch|sh|ss|[sxz])es$", "$1")
-        .singular("([^aeiouy])ies$", "$1y");
+        .singular("(ch|sh|ss|s|x|z)es$", "${1}")
+        .singular("([^aeiouy])ies$", "${1}y");
 
     assert_eq!(inflector.singularize("cars"), "car");
     assert_eq!(inflector.singularize("boxes"), "box");

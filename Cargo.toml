@@ -11,9 +11,6 @@ repository = "https://github.com/nathanfaucett/rs-inflector.git"
 homepage = "https://github.com/nathanfaucett/rs-inflector"
 
 [dependencies]
-regex = "0.1.8"
-
-[dependencies.vector]
-git = "https://github.com/nathanfaucett/rs-vector.git"
-[dependencies.stack]
-git = "https://github.com/nathanfaucett/rs-stack.git"
+regex = {version ="0.2"}
+vector = {git = "https://github.com/nathanfaucett/rs-vector.git"}
+collection_traits = {git = "https://github.com/nathanfaucett/rs-collection_traits.git"}

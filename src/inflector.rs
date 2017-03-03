@@ -1,9 +1,7 @@
 use collections::string::{String, ToString};
 
-use core::convert::AsRef;
-
 use vector::Vector;
-use stack::Stack;
+use collection_traits::{Collection, Stack};
 
 use rule::Rule;
 
@@ -16,7 +14,7 @@ pub struct Inflector {
 }
 
 impl Inflector {
-    #[inline]
+    #[inline(always)]
     pub fn new(locale: &str) -> Self {
         Inflector {
             locale: locale.to_string(),
@@ -26,8 +24,8 @@ impl Inflector {
         }
     }
 
-    #[inline]
-    pub fn get_locale(&self) -> &str {
+    #[inline(always)]
+    pub fn locale(&self) -> &String {
         &self.locale
     }
 
@@ -70,37 +68,35 @@ impl Inflector {
         self
     }
 
-    #[inline]
+    #[inline(always)]
     pub fn pluralize(&mut self, word: &str) -> String {
         Self::replace(&self.uncountables, &self.plurals, word)
     }
 
-    #[inline]
+    #[inline(always)]
     pub fn singularize(&mut self, word: &str) -> String {
        Self::replace(&self.uncountables, &self.singulars, word)
     }
-    
+
     #[inline]
     fn replace(uncountables: &Vector<String>, replacers: &Vector<Rule>, word: &str) -> String {
-        let mut result: String = word.to_string();
-    
+        let result = word.to_string();
+
         if uncountables.contains(&result) {
             result
         } else {
             for rule in replacers.iter().rev() {
-                let regex = &rule.regex;
-    
+                let regex = rule.regex();
+
                 if regex.is_match(&result) {
-                    let replacer: &str = rule.replacer.as_ref();
-                    result = regex.replace_all(&(result.clone()), replacer);
-                    break;
+                    return regex.replace_all(&result, rule.replacer()).to_string();
                 }
             }
-    
+
             result
         }
     }
-    
+
     #[inline]
     fn create_match_word(word: &str) -> String {
         let mut s = String::new();

@@ -4,21 +4,27 @@ use regex::Regex;
 
 
 pub struct Rule {
-    pub regex: Regex,
-    pub replacer: String,
+    regex: Regex,
+    replacer: String,
 }
 
 impl Rule {
-    #[inline]
+    #[inline(always)]
     pub fn new(rule: String, replacer: String) -> Self {
-        let re = match Regex::new(&rule) {
-            Ok(re) => re,
-            Err(err) => panic!("{}", err),
-        };
-
         Rule {
-            regex: re,
+            regex: match Regex::new(&rule) {
+                Ok(re) => re,
+                Err(err) => panic!("{}", err),
+            },
             replacer: replacer,
         }
+    }
+    #[inline(always)]
+    pub fn regex(&self) -> &Regex {
+        &self.regex
+    }
+    #[inline(always)]
+    pub fn replacer(&self) -> &str {
+        &self.replacer
     }
 }
