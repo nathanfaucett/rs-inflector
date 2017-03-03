@@ -1,6 +1,6 @@
 use collections::string::String;
 
-use regex::Regex;
+use regex::{Regex, RegexBuilder};
 
 
 pub struct Rule {
@@ -12,9 +12,12 @@ impl Rule {
     #[inline(always)]
     pub fn new(rule: String, replacer: String) -> Self {
         Rule {
-            regex: match Regex::new(&rule) {
-                Ok(re) => re,
-                Err(err) => panic!("{}", err),
+            regex: {
+                RegexBuilder::new(&rule)
+                    .case_insensitive(true)
+                    .unicode(true)
+                    .build()
+                    .unwrap()
             },
             replacer: replacer,
         }
