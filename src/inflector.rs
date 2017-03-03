@@ -69,12 +69,12 @@ impl Inflector {
     }
 
     #[inline(always)]
-    pub fn pluralize(&mut self, word: &str) -> String {
+    pub fn pluralize(&self, word: &str) -> String {
         Self::replace(&self.uncountables, &self.plurals, word)
     }
 
     #[inline(always)]
-    pub fn singularize(&mut self, word: &str) -> String {
+    pub fn singularize(&self, word: &str) -> String {
        Self::replace(&self.uncountables, &self.singulars, word)
     }
 
