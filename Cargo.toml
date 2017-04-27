@@ -12,5 +12,3 @@ homepage = "https://github.com/nathanfaucett/rs-inflector"
 
 [dependencies]
 regex = {version ="0.2"}
-vector = {git = "https://github.com/nathanfaucett/rs-vector.git"}
-collection_traits = {git = "https://github.com/nathanfaucett/rs-collection_traits.git"}

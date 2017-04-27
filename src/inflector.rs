@@ -1,26 +1,25 @@
 use collections::string::{String, ToString};
-
-use vector::Vector;
-use collection_traits::{Collection, Stack};
+use collections::vec::Vec;
 
 use rule::Rule;
 
 
 pub struct Inflector {
     locale: String,
-    singulars: Vector<Rule>,
-    plurals: Vector<Rule>,
-    uncountables: Vector<String>,
+    singulars: Vec<Rule>,
+    plurals: Vec<Rule>,
+    uncountables: Vec<String>,
 }
 
 impl Inflector {
+    
     #[inline(always)]
     pub fn new(locale: &str) -> Self {
         Inflector {
             locale: locale.to_string(),
-            singulars: Vector::new(),
-            plurals: Vector::new(),
-            uncountables: Vector::new(),
+            singulars: Vec::new(),
+            plurals: Vec::new(),
+            uncountables: Vec::new(),
         }
     }
 
@@ -79,7 +78,7 @@ impl Inflector {
     }
 
     #[inline]
-    fn replace(uncountables: &Vector<String>, replacers: &Vector<Rule>, word: &str) -> String {
+    fn replace(uncountables: &Vec<String>, replacers: &Vec<Rule>, word: &str) -> String {
         let result = word.to_string();
 
         if uncountables.contains(&result) {

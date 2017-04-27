@@ -5,8 +5,6 @@
 extern crate collections;
 
 extern crate regex;
-extern crate vector;
-extern crate collection_traits;
 
 
 mod inflector;

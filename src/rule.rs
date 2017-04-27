@@ -9,6 +9,7 @@ pub struct Rule {
 }
 
 impl Rule {
+
     #[inline(always)]
     pub fn new(rule: String, replacer: String) -> Self {
         Rule {
@@ -22,10 +23,12 @@ impl Rule {
             replacer: replacer,
         }
     }
+    
     #[inline(always)]
     pub fn regex(&self) -> &Regex {
         &self.regex
     }
+
     #[inline(always)]
     pub fn replacer(&self) -> &str {
         &self.replacer
